@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "search":"../../components/searchBtn/searchButton",
+    "product":"../../components/product/product"
+  },
+  "navigationBarTitleText": "商品列表"
 }

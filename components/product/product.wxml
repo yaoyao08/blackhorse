@@ -1,0 +1,16 @@
+<!--components/product/product.wxml-->
+<view class="product">
+  <view style="width: 50%;text-align: center;padding: 10rpx 0;">
+    <navigator>
+      <image src="{{product.goods_small_logo}}" mode="widthFix" class="product_logo"></image>
+    </navigator>
+  </view>
+  <view style="width: 50%;position: relative;">
+    <text>
+      {{product.goods_name}}
+    </text>
+    <text style="color: red;position: absolute; bottom: 10rpx;">
+      ￥{{product.goods_price}}
+    </text>
+  </view>
+</view>

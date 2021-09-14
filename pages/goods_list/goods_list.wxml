@@ -1,2 +1,6 @@
 <!--pages/goods_list/goods_list.wxml-->
-<text>pages/goods_list/goods_list.wxml</text>
+<search style="position: fixed; top: 0;width: 100%;z-index: 20;"></search>
+<scroll-view style="margin-top: 65rpx">
+  <product wx:for="{{goods}}" wx:key="goods_id" product="{{item}}"></product>
+  <view style="text-align: center;color: gray;">再往下划也没有啦~</view>
+</scroll-view>

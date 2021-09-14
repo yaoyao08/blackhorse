@@ -10,23 +10,23 @@
 
 .imgItem{
     width: 100%;
-    margin: 5rpx;
+    margin: 0.5vw;
     align-items: center;
 }
 
 .img_item{
     width: 31vw;
     height: 400rpx;
-    margin: 5rpx;
+    margin: 0.5vw;
 }
 
 .img_item2{
     width: 31vw;
     height: 193rpx;
-    margin: 5rpx;
+    margin: 0.5vw;
 }
 
 .outImg{
-    margin: 0 5rpx;
+    margin: 0 0.5vw;
     float: left;
 }

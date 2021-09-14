@@ -1,3 +1,5 @@
+import getRequest from "../../request/index.js";
+
 // pages/goods_list/goods_list.js
 Page({
 
@@ -5,14 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    goods:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getGoods(options)
   },
 
   /**
@@ -62,5 +64,17 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  getGoods(params){
+    getRequest({
+      url:'/goods/search',
+      params: params
+    }).then(res=>{
+      console.log(res);
+      this.setData({
+        goods: res.data.message.goods
+      })
+    })
   }
 })

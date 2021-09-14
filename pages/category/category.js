@@ -1,18 +1,37 @@
 // pages/category/category.js
+import getRequest from "../../request/index"
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    cate: [],
+    showData: [],
+    activeId: 1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const localCates = wx.getStorageSync("localCates");
 
+    if (!localCates) {
+      this.getCateData();
+    }
+    else {
+      if (Date.now() - localCates.time > 5000) {
+        this.getCateData();
+      }
+      else {
+        this.setData({
+          cate: localCates,
+          showData: localCates[0].children
+        })
+      }
+    }
   },
 
   /**
@@ -62,5 +81,26 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  getCateData() {
+    getRequest({
+      url: "/categories"
+    }).then(res => {
+      console.log(res);
+      const cates = res.data.message;
+      wx.setStorageSync("localCates", { time: Date.now(), data: cates });
+      this.setData({
+        cate: res.data.message,
+        showData: res.data.message[0].children
+      })
+    })
+  },
+
+  handleTitleClick(e) {
+    this.setData({
+      activeId: e.currentTarget.dataset.id,
+      showData: e.currentTarget.dataset.showdata
+    })
   }
 })
