@@ -1,0 +1,15 @@
+/* components/indexComponents/middleMenu/middleMenu.wxss */
+.menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin:  0;
+    padding: 20rpx 0;
+    background-color: whitesmoke;
+} 
+.nav{
+    width: 100rpx;
+}
+.imgMenu{
+    width: 100rpx;
+}

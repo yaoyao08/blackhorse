@@ -1,0 +1,13 @@
+<!--components/floor/floor.wxml-->
+<view class="outFloor">
+	<view style="width: 100%;">
+		<image class="floorTitle" src="{{floor.floor_title.image_src}}" mode="widthFix" lazy-load="true" />
+	</view>
+	<view class="imgItem">
+		<navigator wx:for="{{floor.product_list}}" wx:key="name" class="outImg">
+			<image wx:if="{{index===0}}" class="img_item" src="{{item.image_src}}" lazy-load="true" />
+            <image wx:elif="{{index!==0}}" class="img_item2" src="{{item.image_src}}" lazy-load="true" />
+		</navigator>
+	</view>
+
+</view>

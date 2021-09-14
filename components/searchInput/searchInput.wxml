@@ -1,0 +1,4 @@
+<!--components/searchInput/searchInput.wxml-->
+<view class="topSearch">
+    <input auto-focus class="searchBtn"></input>
+</view>

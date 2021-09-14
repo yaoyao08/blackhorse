@@ -1,0 +1,32 @@
+/* components/floor/floor.wxss */
+.outFloor{
+    width: 100%;
+    height: auto;
+}
+
+.floorTitle{
+    width: 100%;
+}
+
+.imgItem{
+    width: 100%;
+    margin: 5rpx;
+    align-items: center;
+}
+
+.img_item{
+    width: 31vw;
+    height: 400rpx;
+    margin: 5rpx;
+}
+
+.img_item2{
+    width: 31vw;
+    height: 193rpx;
+    margin: 5rpx;
+}
+
+.outImg{
+    margin: 0 5rpx;
+    float: left;
+}

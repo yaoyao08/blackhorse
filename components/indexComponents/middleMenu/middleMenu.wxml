@@ -1,0 +1,6 @@
+<!--components/indexComponents/middleMenu/middleMenu.wxml-->
+<view class="menu">
+    <navigator class="nav" url="" redirect hover-class="" wx:for="{{navs}}" wx:key="name">
+        <image class="imgMenu" mode="widthFix" src="{{item.image_src}}" />
+    </navigator>
+</view>

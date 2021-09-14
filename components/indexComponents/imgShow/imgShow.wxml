@@ -1,0 +1,12 @@
+<!--components/imgShow/imgShow.wxml-->
+<view style="margin-top:65rpx">
+    <swiper interval="3000" indicator-dots="true" autoplay="true" circular="true" easing-function="easeInCubic"
+        class="imgBar">
+        <swiper-item wx:for="{{listData}}" wx:key="goods_id">
+            <navigator>
+                <image class="imgItem" mode="widthFix" src="{{item.image_src}}" />
+            </navigator>
+        </swiper-item>
+    </swiper>
+
+</view>
