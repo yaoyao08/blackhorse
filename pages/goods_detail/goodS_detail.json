@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "Bar": "../../components/goods_detail/bottomBar/bottomBar"
+    "imgSwipper": "../../components/indexComponents/imgShow/imgShow"
   },
   "navigationBarTitleText": "商品详情"
 }

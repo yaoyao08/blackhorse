@@ -21,7 +21,13 @@
         {
           "name": "商品详情",
           "pathName": "pages/goods_detail/goodS_detail",
-          "query": "goods_id=57444",
+          "query": "goods_id=57437",
+          "scene": null
+        },
+        {
+          "name": "商品详情",
+          "pathName": "pages/goods_detail/goodS_detail",
+          "query": "goods_id=43986",
           "scene": null
         }
       ]

@@ -1,3 +1,47 @@
 <!--pages/goods_detail/goodS_detail.wxml-->
-
-<Bar style="position: fixed;"></Bar>
+<view style="width: 100%;height: 100%; background-color: #eeeeee; padding: 20rpx 0;">
+  <view wx:if="{{isShow}}" style="z-index: 1000; background-color: #646464;width: 100%; height: 100%;position: fixed;top: 0;bottom: 0;opacity: 1;align-items: center;display: flex;">
+    <swiper style="width: 100%;height: 400rpx;background-color: white;" interval="300000" indicator-dots="true"
+    autoplay="true" circular="true" current="{{currentId}}" easing-function="easeInCubic">
+    <swiper-item wx:for="{{img}}" wx:key="pics_id" style="text-align: center;width: 100%;">
+      <image bindtap="handleExite" style="height: 600rpx;" bindlongpress="handleLongpress" data-url="{{item.image_src}}"
+        mode="aspectFit" src="{{item.image_src}}" />
+    </swiper-item>
+  </swiper>
+  </view>
+  <swiper style="width: 100%;height: 400rpx;background-color: white;" interval="3000" indicator-dots="true"
+    autoplay="true" circular="true" easing-function="easeInCubic">
+    <swiper-item wx:for="{{img}}" wx:key="pics_id" style="text-align: center;width: 100%;">
+      <image bindtap="handleView" data-currentId="{{index}}" style="height: 400rpx;"
+        mode="aspectFit" src="{{item.image_src}}" />
+    </swiper-item>
+  </swiper>
+  <view
+    style="margin: 10rpx 0;height: 80rpx; width: 100%; color: red; font-size: 20px; display: flex; align-items: baseline;background-color: white;">
+    <view>￥{{originData.goods_price}}</view>
+    <view style="font-size: 10px;">起</view>
+  </view>
+  <view style="margin-bottom: 90rpx;">
+    <rich-text nodes="{{originData.goods_introduce}}"></rich-text>
+  </view>
+  <view class="bottomBar">
+    <view class="inBox">
+      <view class="iconfont icon-lianxikefu"></view>
+      <view>联系客服</view>
+    </view>
+    <view class="inBox">
+      <view class="iconfont icon-gwc"></view>
+      <view>购物车</view>
+    </view>
+    <view class="inBox">
+      <view class="iconfont icon-tubiao212"></view>
+      <view>分享</view>
+    </view>
+    <view class="inBox2">
+      <view style="color: white">加入购物车</view>
+    </view>
+    <view class="inBox3">
+      <view style="color: white">立即购买</view>
+    </view>
+  </view>
+</view>

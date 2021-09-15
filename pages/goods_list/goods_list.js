@@ -50,7 +50,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    this.setData({
+      goods: []
+    })
   },
 
   /**
@@ -69,12 +71,19 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.queryparams.pagenum++;
-    if (this.queryparams.pagenum <= this.total) {
+    if (++this.queryparams.pagenum <= this.total) {
       this.getGoods(this.queryparams);
     }
     else {
-      this.data.isEnd = true
+      this.queryparams.pagenum--;
+      this.setData({
+        isEnd: true
+      });
+      setTimeout(() => {
+        this.setData({
+          isEnd: false
+        })
+      }, 1500);
     }
   },
 
@@ -86,6 +95,7 @@ Page({
   },
 
   getGoods(params) {
+    console.log(params);
     wx.showLoading({
       title: '加载中',
     });

@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2805630 */
-  src: url('//at.alicdn.com/t/font_2805630_5k50hwuri8w.woff2?t=1631346692972') format('woff2'),
-       url('//at.alicdn.com/t/font_2805630_5k50hwuri8w.woff?t=1631346692972') format('woff'),
-       url('//at.alicdn.com/t/font_2805630_5k50hwuri8w.ttf?t=1631346692972') format('truetype');
+  src: url('//at.alicdn.com/t/font_2805630_rtmbku0ozk.woff2?t=1631687808992') format('woff2'),
+       url('//at.alicdn.com/t/font_2805630_rtmbku0ozk.woff?t=1631687808992') format('woff'),
+       url('//at.alicdn.com/t/font_2805630_rtmbku0ozk.ttf?t=1631687808992') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,42 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-lianxikefu:before {
+  content: "\e624";
+}
+
+.icon-xinpin:before {
+  content: "\e71d";
+}
+
+.icon-paimai:before {
+  content: "\e61e";
+}
+
+.icon-baokuan:before {
+  content: "\e625";
+}
+
+.icon-chongzhi:before {
+  content: "\e60f";
+}
+
+.icon-leimupinleifenleileibie:before {
+  content: "\e602";
+}
+
+.icon-muying:before {
+  content: "\e603";
+}
+
+.icon-chaoshi:before {
+  content: "\e604";
+}
+
+.icon-miaosha:before {
+  content: "\e66a";
 }
 
 .icon-sousuo:before {
