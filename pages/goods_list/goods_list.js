@@ -7,14 +7,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goods:[]
+    goods: [],
+    isEnd: false
   },
+  queryparams: {
+    cid: 0,
+    pagenum: 1,
+    pagesize: 10
+  },
+  total: 0,
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getGoods(options)
+    this.queryparams.cid = options.cid;
+    this.getGoods(this.queryparams)
   },
 
   /**
@@ -49,14 +57,25 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.queryparams.cid=1;
+    this.setData({
+      goods:[]
+    });
+    this.getGoods(this.queryparams);
+    wx.stopPullDownRefresh();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.queryparams.pagenum++;
+    if (this.queryparams.pagenum <= this.total) {
+      this.getGoods(this.queryparams);
+    }
+    else {
+      this.data.isEnd = true
+    }
   },
 
   /**
@@ -66,15 +85,20 @@ Page({
 
   },
 
-  getGoods(params){
+  getGoods(params) {
+    wx.showLoading({
+      title: '加载中',
+    });
     getRequest({
-      url:'/goods/search',
+      url: '/goods/search',
       params: params
-    }).then(res=>{
-      console.log(res);
+    }).then(res => {
+      this.total = Math.ceil(res.data.message.total / this.queryparams.pagesize)
       this.setData({
-        goods: res.data.message.goods
+        goods: [...this.data.goods, ...res.data.message.goods]
       })
+    }).then(()=>{
+      wx.hideLoading();
     })
   }
 })

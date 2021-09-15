@@ -1,9 +1,8 @@
 <!--components/product/product.wxml-->
-<view class="product">
+<navigator url="/pages/goods_detail/goodS_detail?goods_id={{product.goods_id}}">
+  <view class="product">
   <view style="width: 50%;text-align: center;padding: 10rpx 0;">
-    <navigator>
-      <image src="{{product.goods_small_logo}}" mode="widthFix" class="product_logo"></image>
-    </navigator>
+    <image lazy-load="true" src="{{product.goods_small_logo}}" mode="widthFix" class="product_logo"></image>
   </view>
   <view style="width: 50%;position: relative;">
     <text>
@@ -14,3 +13,4 @@
     </text>
   </view>
 </view>
+</navigator>

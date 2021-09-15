@@ -1,0 +1,8 @@
+<!--components/goods_detail/bottomBar/bottomBar.wxml-->
+<view style="width: 100%;display: flex">
+  <view style="background-color: red;height: 60rpx; width: 15%"></view>
+  <view style="background-color: red;height: 60rpx; width: 15%"></view>
+  <view style="background-color: red;height: 60rpx; width: 15%"></view>
+  <view style="background-color: red;height: 60rpx; width: 27.5%"></view>
+  <view style="background-color: red;height: 60rpx; width: 27.5%"></view>
+</view>

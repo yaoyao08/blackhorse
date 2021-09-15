@@ -1,2 +1,3 @@
 <!--pages/goods_detail/goodS_detail.wxml-->
-<text>pages/goods_detail/goodS_detail.wxml</text>
+
+<Bar style="position: fixed;"></Bar>

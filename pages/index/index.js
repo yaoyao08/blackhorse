@@ -11,9 +11,13 @@ Page({
   },
   //options(Object)
   onLoad: function (options) {
+    wx.showLoading({
+      title: '拼命加载中',
+    })
     this.getSwipperData();
     this.getNavData();
     this.getFloors();
+    wx.hideLoading();
   },
   onReady: function () {
 
