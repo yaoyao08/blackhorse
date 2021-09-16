@@ -1,46 +1,88 @@
 <!--pages/goods_detail/goodS_detail.wxml-->
-<view style="width: 100%;height: 100%; background-color: #eeeeee; padding: 20rpx 0;">
-  <view wx:if="{{isShow}}" style="z-index: 1000; background-color: #646464;width: 100%; height: 100%;position: fixed;top: 0;bottom: 0;opacity: 1;align-items: center;display: flex;">
-    <swiper style="width: 100%;height: 400rpx;background-color: white;" interval="300000" indicator-dots="true"
-    autoplay="true" circular="true" current="{{currentId}}" easing-function="easeInCubic">
+<view class="publicParent">
+  <!--图片预览-->
+  <view wx:if="{{isShow}}" class="viewImg">
+    <swiper class="imgSwipper" interval="300000" indicator-dots="true" autoplay="true" circular="true"
+      current="{{currentId}}" easing-function="easeInCubic">
+      <swiper-item wx:for="{{img}}" wx:key="pics_id" style="text-align: center;width: 100%;">
+        <image bindtap="handleExite" style="height: 600rpx;" bindlongpress="handleLongpress"
+          data-url="{{item.image_src}}" mode="aspectFit" src="{{item.image_src}}" />
+      </swiper-item>
+    </swiper>
+  </view>
+  <!--轮播图-->
+  <swiper class="imgSwipper" interval="3000" indicator-dots="true" autoplay="true" circular="true"
+    easing-function="easeInCubic">
     <swiper-item wx:for="{{img}}" wx:key="pics_id" style="text-align: center;width: 100%;">
-      <image bindtap="handleExite" style="height: 600rpx;" bindlongpress="handleLongpress" data-url="{{item.image_src}}"
-        mode="aspectFit" src="{{item.image_src}}" />
+      <image bindtap="handleView" data-currentId="{{index}}" style="height: 400rpx;" mode="aspectFit"
+        src="{{item.image_src}}" />
     </swiper-item>
   </swiper>
+  <!--商品名、价格等-->
+  <view class="detail_left">
+    <view class="detail">
+      <view style="display: flex; align-items: baseline;height: 100%;flex: 1;">
+        <view>￥{{originData.goods_price}}</view>
+        <view style="font-size: 10px;">起</view>
+      </view>
+      <view style="flex: 2;flex-wrap: wrap;">
+        <view style="font-size: 20rpx;color: rgb(172, 170, 170);">
+          {{originData.goods_name}}
+        </view>
+      </view>
+    </view>
+    <view bindtap="handleCollect" class="collect">
+      <view class="{{isCollect?'iconfont icon-shoucang':'iconfont icon-shoucang1'}}" hover-class="collectIconHover">
+      </view>
+      <text style="font-size: 10px; margin: 0;">{{isCollect?'取消收藏':'收藏'}}</text>
+    </view>
   </view>
-  <swiper style="width: 100%;height: 400rpx;background-color: white;" interval="3000" indicator-dots="true"
-    autoplay="true" circular="true" easing-function="easeInCubic">
-    <swiper-item wx:for="{{img}}" wx:key="pics_id" style="text-align: center;width: 100%;">
-      <image bindtap="handleView" data-currentId="{{index}}" style="height: 400rpx;"
-        mode="aspectFit" src="{{item.image_src}}" />
-    </swiper-item>
-  </swiper>
-  <view
-    style="margin: 10rpx 0;height: 80rpx; width: 100%; color: red; font-size: 20px; display: flex; align-items: baseline;background-color: white;">
-    <view>￥{{originData.goods_price}}</view>
-    <view style="font-size: 10px;">起</view>
-  </view>
+  <!--图文详情-->
   <view style="margin-bottom: 90rpx;">
     <rich-text nodes="{{originData.goods_introduce}}"></rich-text>
   </view>
+  <!--购物车-->
+  <view class="{{!cart?'cart':'cart_active'}}" out-of-bounds="true" direction="vertical"
+  bindtouchstart="touchStart" bindtouchmove="touchMove"
+    style="width: 100%;padding: 10rpx; display: flex; flex-direction: column; justify-content: space-around;">
+    <view
+      style="flex: 1; width: 100%; display: flex; justify-content: space-between; padding: 10rpx;align-items: center;">
+      <view style="flex: 2;display: flex;">
+        <image mode="widthFix" src="{{cartObj.goods_small_logo}}" style="flex: 1; width: 80rpx; height: 80rpx;"
+          bindtap="handlePreview"></image>
+        <view style="flex: 2;font-size: 25rpx;">{{cartObj.goods_name}}</view>
+      </view>
+      <view style="flex: 1;text-align: center; color: red;">￥{{cartObj.goods_price}}</view>
+    </view>
+    <view style="flex: 5; width: 100%;"></view>
+    <view style="flex: 1; width: 100%;display: flex;justify-content: space-between;">
+      <view>剩余数量：{{cartObj.goods_number}}</view>
+      <view class="counter">
+        <view style="flex: 1;text-align: center;border-right: 1px solid rgb(233, 233, 233);" bindtap="cartNum_sub">-
+        </view>
+        <view style="flex: 3;text-align: center;border-right: 1px solid rgb(233, 233, 233);">{{cartObj.num}}</view>
+        <view style="flex: 1;text-align: center;" bindtap="cartNum_add">+</view>
+      </view>
+    </view>
+  </view>
+  <!--底部工具栏-->
   <view class="bottomBar">
-    <view class="inBox">
+    <button class="inBox" plain="true" open-type="contact">
       <view class="iconfont icon-lianxikefu"></view>
       <view>联系客服</view>
-    </view>
-    <view class="inBox">
+    </button>
+    <button class="inBox" plain="true" bindtap="toCart">
       <view class="iconfont icon-gwc"></view>
       <view>购物车</view>
-    </view>
-    <view class="inBox">
+    </button>
+    <button class="inBox" plain="true" open-type="share">
       <view class="iconfont icon-tubiao212"></view>
       <view>分享</view>
+    </button>
+    <view class="inBox2" bindtap="addinCart">
+      <view style="color: white">{{!cart?'加入购物车':'立即加入'}}</view>
     </view>
-    <view class="inBox2">
-      <view style="color: white">加入购物车</view>
-    </view>
-    <view class="inBox3">
+    <view class="inBox3" bindtap="handleBuy">
       <view style="color: white">立即购买</view>
     </view>
   </view>

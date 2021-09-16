@@ -4,7 +4,11 @@ App({
   //onLaunch,onShow: options(path,query,scene,shareTicket,referrerInfo(appId,extraData))
   
   onLaunch: function(options) {
-    
+    wx.login({
+      timeout: 5000,
+    }).then(res=>{
+      console.log(res);
+    })
   },
   onShow: function(options) {
 

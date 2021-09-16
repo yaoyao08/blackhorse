@@ -95,7 +95,6 @@ Page({
   },
 
   getGoods(params) {
-    console.log(params);
     wx.showLoading({
       title: '加载中',
     });

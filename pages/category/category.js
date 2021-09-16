@@ -91,7 +91,6 @@ Page({
     getRequest({
       url: "/categories"
     }).then(res => {
-      console.log(res);
       const cates = res.data.message;
       wx.setStorageSync("localCates", { time: Date.now(), data: cates });
       this.setData({

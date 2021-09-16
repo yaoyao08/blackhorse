@@ -1,4 +1,7 @@
 import getRequest from "../../request/index.js";
+import {
+  postRequest
+} from "../../request/index";
 
 // pages/goods_detail/goodS_detail.js
 Page({
@@ -10,7 +13,10 @@ Page({
     img: [],
     originData: [],
     isShow: false,
-    currentId: 1
+    currentId: 1,
+    isCollect: false,
+    cart: false,
+    cartObj: Object
   },
 
   params: {
@@ -57,7 +63,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    if (this.data.cart) {
+      this.setData({
+        cart: !this.data.cart,
+      });
+    }
   },
 
   /**
@@ -78,7 +88,6 @@ Page({
       url: '/goods/detail',
       params: params
     }).then(res => {
-      console.log(res);
       this.setData({
         originData: res.data.message,
         img: res.data.message.pics.map(item => {
@@ -170,4 +179,205 @@ Page({
       }
     })
   },
+  handleCollect(e) {
+    let data;
+    if (!wx.getStorageSync('userData')) {
+      wx.getUserProfile({
+        desc: '购买商品前需登录',
+      }).then(res => {
+        console.log(res);
+        wx.setStorageSync('userInfo', res.userInfo);
+        wx.setStorageSync('userData', res);
+      })
+    } else {
+      if (!this.data.isCollect) {
+        if (wx.getStorageSync('collection')) {
+          data = wx.getStorageSync('collection');
+          if (data instanceof Array) {
+            console.log(data.indexOf({
+              ...this.data.originData
+            }));
+            if (data.indexOf({
+                ...this.data.originData
+              }) !== -1) {
+              data.push({
+                ...this.data.originData
+              });
+              wx.setStorageSync('collection', data);
+            }
+          } else {
+            if (data.goods_id !== this.data.originData.goods_id) {
+              data = [{
+                ...data
+              }, {
+                ...this.data.originData
+              }]
+            }
+            wx.setStorageSync('collection', data)
+          }
+        } else {
+          data = {
+            ...this.data.originData
+          }
+          wx.setStorageSync('collection', data)
+        }
+        console.log(wx.getStorageSync('collection'));
+      }
+      this.setData({
+        isCollect: !this.data.isCollect
+      })
+    }
+  },
+  addinCart(e) {
+    let data;
+    if (!wx.getStorageSync('userData')) {
+      wx.getUserProfile({
+        desc: '购买商品前需登录',
+      }).then(res => {
+        console.log(res);
+        wx.setStorageSync('userInfo', res.userInfo);
+        wx.setStorageSync('userData', res);
+      })
+    } else {
+      if (this.data.cart) {
+        wx.showToast({
+          title: '添加成功！',
+        });
+        //添加到购物车的代码
+        //没有后台接口，暂时用本地存储模拟
+        if (!this.data.isCollect) {
+          if (wx.getStorageSync('carts')) {
+            data = wx.getStorageSync('carts');
+            if (data instanceof Array) {
+              console.log(data.indexOf({
+                ...this.data.originData
+              }));
+              if (data.indexOf({
+                  ...this.data.originData
+                }) !== -1) {
+                data.push({
+                  ...this.data.originData
+                });
+                wx.setStorageSync('carts', data);
+              }
+            } else {
+              if (data.goods_id !== this.data.originData.goods_id) {
+                data = [{
+                  ...data
+                }, {
+                  ...this.data.originData
+                }]
+              }
+              wx.setStorageSync('carts', data)
+            }
+          } else {
+            data = {
+              ...this.data.originData
+            }
+            wx.setStorageSync('carts', data)
+          }
+          console.log(wx.getStorageSync('carts'));
+        }
+      }
+      this.setData({
+        cart: !this.data.cart,
+        cartObj: {
+          ...this.data.originData,
+          num: 1
+        }
+      });
+    }
+  },
+  handlePreview(e) {
+    wx.previewMedia({
+      sources: [{
+        url: this.data.cartObj.goods_big_logo,
+        type: 'image'
+      }],
+      showmenu: true
+    })
+  },
+  cartNum_add() {
+    this.setData({
+      cartObj: {
+        ...this.data.cartObj,
+        num: this.data.cartObj.num + 1
+      }
+    })
+  },
+
+  cartNum_sub() {
+    if (this.data.cartObj.num > 1) {
+      this.setData({
+        cartObj: {
+          ...this.data.cartObj,
+          num: this.data.cartObj.num - 1
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '数量不能小于1！',
+      })
+    }
+  },
+  currrentY: 0,
+  touchStart(e) {
+    this.currrentY = e.touches[0].clientY;
+  },
+  touchMove(e) {
+    if (e.touches[0].clientY - this.currrentY >= 10) {
+      this.clientY = e.touches[0].clientY;
+      this.setData({
+        cart: false
+      })
+    } else if (e.touches[0].clientY - this.currrentY < 0) {
+      this.clientY = e.touches[0].clientY;
+      this.setData({
+        cart: true
+      })
+    }
+  },
+  toCart(e) {
+    wx.switchTab({
+      url: '/pages/cart/cart',
+    })
+  },
+  handleBuy(e) {
+    let data ={};
+    if (wx.getStorageSync('userData')) {
+      data = wx.getStorageSync('userData');
+      this.buy(data)
+    } else {
+      wx.getUserProfile({
+        desc: '购买商品前需登录',
+      }).then(res => {
+        console.log(res);
+        wx.setStorageSync('userInfo', res.userInfo);
+        wx.setStorageSync('userData', res);
+        data = wx.getStorageSync('userData');
+        this.buy(data)
+      })
+    }
+  },
+  buy(data){
+    wx.login({
+      timeout: 500,
+    }).then(res => {
+      wx.setStorageSync('code', res.code)
+    }).then(() => {
+      console.log(typeof data.rawData);
+      postRequest({
+        url: '/users/wxlogin',
+        params: {
+          encryptedData: data.encryptedData,
+          rawData: data.rawData,
+          iv: data.iv,
+          signature: data.signature,
+          code: wx.getStorageSync('code'),
+        }
+      }).then(res => {
+        console.log(res);
+      })
+    })
+  }
 })
