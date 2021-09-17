@@ -4,7 +4,7 @@
 		<image class="floorTitle" src="{{floor.floor_title.image_src}}" mode="widthFix" lazy-load="true" />
 	</view>
 	<view class="imgItem">
-		<navigator wx:for="{{floor.product_list}}" wx:key="name" class="outImg">
+		<navigator wx:for="{{floor.product_list}}" wx:key="name" class="outImg" open-type="switchTab" url="item.navigator_url">
 			<image wx:if="{{index===0}}" class="img_item" src="{{item.image_src}}" lazy-load="true" />
             <image wx:elif="{{index!==0}}" class="img_item2" src="{{item.image_src}}" lazy-load="true" />
 		</navigator>

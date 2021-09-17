@@ -254,7 +254,7 @@ Page({
               }));
               if (data.indexOf({
                   ...this.data.originData
-                }) !== -1) {
+                }) === -1) {
                 data.push({
                   ...this.data.originData
                 });

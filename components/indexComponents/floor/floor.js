@@ -25,7 +25,7 @@ Component({
     },
     lifetimes:{
         attached:function(){
-            //console.log(this.data.floor);
+            console.log(this.data.floor);
         }
     }
 })

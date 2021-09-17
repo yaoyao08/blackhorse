@@ -1,2 +1,57 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view wx:if="{{isLogin}}" style="width: 100%; height: 100vh; background-color: #e9e9e9;">
+  <view style="width: 100vw;height: 40%;position: relative;">
+    <view class="userBack" style="background-image: url('{{userInfo.avatarUrl}}');"></view>
+    <image class="{{touchImage?'userInfo_image userInfo_image_hover':'userInfo_image userInfo_image_back'}}"
+      src="{{userInfo.avatarUrl}}" bindtap="touchImage"></image>
+    <text class="userName">{{userInfo.nickName}}</text>
+    <view class="menu2">
+      <view class="iconfont icon-12 item2" hover-class="item_hover"></view>
+      <view class="iconfont icon-shoucang item2" hover-class="item_hover"></view>
+      <view class="iconfont icon-lianxikefu item2" hover-class="item_hover"></view>
+    </view>
+  </view>
+  <view class="menu">
+    <view class="menu_inner">
+      <view class="menu_item">
+        <view class="item" hover-class="item_hover">
+          <image src="../../menuIcons/order.png" style="width: 80rpx; height: 80rpx;" mode="widthFix"></image>
+          <view>订单管理</view>
+        </view>
+      </view>
+
+      <view class="menu_item">
+        <view class="item" hover-class="item_hover">
+          <image src="../../menuIcons/payfor.png" style="width: 80rpx; height: 80rpx;" mode="widthFix"></image>
+          <view>
+            待支付
+          </view>
+        </view>
+      </view>
+      <view class="menu_item">
+        <view class="item" hover-class="item_hover">
+          <image src="../../menuIcons/confirm.png" style="width: 80rpx; height: 80rpx;" mode="widthFix"></image>
+          <view>待收货</view>
+        </view>
+      </view>
+      <view class="menu_item">
+        <view class="item" hover-class="item_hover">
+          <image src="../../menuIcons//aftersale.png" style="width: 80rpx; height: 80rpx;" mode="widthFix"></image>
+          <view>售后</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="other">
+    <view class="other_item" style="float: left;padding: 15rpx;">
+      <button open-type="feedback" plain
+        style="border: 0;padding: 0;margin: 0;font-size: 35rpx;font-weight: bold;color: black;height: 70rpx; width: 100%;text-align: left;"
+        size="mini">意见反馈</button>
+    </view>
+    <view class="other_item">联系电话：17362951235</view>
+    <view class="other_item">关于</view>
+  </view>
+</view>
+<view wx:if="{{!isLogin}}" style="text-align: center">
+  <button type="primary" size="mini" bindtap="login">登录</button>
+</view>

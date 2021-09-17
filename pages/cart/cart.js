@@ -5,14 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    product:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getProduct();
   },
 
   /**
@@ -26,14 +26,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.showLoading({
+      title: '拼命加载中...',
+    })
+    this.getProduct();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.setData({
+      product: {}
+    })
   },
 
   /**
@@ -62,5 +67,16 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getProduct(){
+    this.setData({
+      product: wx.getStorageSync('carts')
+    });
+    wx.hideLoading({
+      success: (res) => {},
+    })
+  },
+  handelSelect(e){
+    console.log(e);
   }
 })
