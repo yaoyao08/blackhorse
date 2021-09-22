@@ -26,6 +26,9 @@ Component({
     lifetimes:{
         attached:function(){
             console.log(this.data.floor);
+            setTimeout(() => {
+                
+            }, 1000);
         }
     }
 })
