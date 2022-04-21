@@ -1,0 +1,5 @@
+<!--components/searchButton.wxml-->
+
+<view class="topSearch">
+    <view focus="focus" class="searchBtn" bindtap="toSearch">搜 索</view>
+</view>

@@ -1,0 +1,7 @@
+<!--index.wxml-->
+<view>
+    <searchBtn style="position:fixed; top: 0; z-index: 1; text-align: center; width: 100%;"></searchBtn>
+</view>
+<imgShow listData="{{img}}"></imgShow>
+<middleMenu navs="{{navs}}"></middleMenu>
+<floor wx:for="{{floors}}" floor="{{item}}" wx:key="index"></floor>

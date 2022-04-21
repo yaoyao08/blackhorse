@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "search":"../../components/searchBtn/searchButton"
+  },
+  "navigationBarTitleText": "商品分类",
+  "disableScroll": true
+}

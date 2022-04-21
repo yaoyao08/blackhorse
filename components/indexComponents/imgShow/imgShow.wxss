@@ -1,0 +1,8 @@
+/* components/imgShow/imgShow.wxss */
+.imgItem{
+    width: 100%;
+}
+.imgBar{
+    width: 100%;
+    height: calc(100vw*352/1125);
+}

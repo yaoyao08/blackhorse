@@ -1,0 +1,27 @@
+<!--pages/category/category.wxml-->
+<search></search>
+<view class="public_cate">
+    <scroll-view class="sideMenu" scroll-y="true">
+        <view wx:for="{{cate}}" wx:key="cat_id" class="{{activeId===item.cat_id?'sideTitleActive':'sideTitle'}}"
+            bindtap="handleTitleClick" data-id="{{item.cat_id}}" data-showData="{{item.children}}">
+            {{item.cat_name}}
+        </view>
+    </scroll-view>
+    <scroll-view scroll-y="true" class="goodsArea">
+        <view wx:for="{{showData}}" wx:key="cat_id" style="width:100%">
+            <view  wx:if="{{item.cat_pid!==1480}}" style="text-align: center; font-size: 35rpx;width:100%">
+                {{item.cat_name}}
+            </view>
+            <view style="display: flex;flex-wrap: wrap;justify-content: left;align-items: baseline;">
+                <navigator style="width: 180rpx;height: 190rpx;text-align: center;"
+                    wx:for="{{item.children}}" wx:for-item='item2' wx:key="cat_id"
+                    url="/pages/goods_list/goods_list?cid={{item2.cat_id}}">
+                    <image lazy-load="true" class="cate_icon" mode="widthFix" src="{{item2.cat_icon}}"></image>
+                    <view>
+                        {{item2.cat_name}}
+                    </view>
+                </navigator>
+            </view>
+        </view>
+    </scroll-view>
+</view>

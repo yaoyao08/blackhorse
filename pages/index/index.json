@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "searchBtn": "../../components/searchBtn/searchButton",
+    "imgShow": "../../components/indexComponents/imgShow/imgShow",
+    "middleMenu": "../../components/indexComponents/middleMenu/middleMenu",
+    "floor": "../../components/indexComponents/floor/floor"
+  },
+  "navigationBarTitleText": "优购首页"
+}

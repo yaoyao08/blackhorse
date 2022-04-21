@@ -1,0 +1,42 @@
+/* pages/category/category.wxss */
+.public_cate{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+.sideMenu{
+    height: 100%;
+    width: 25vw;
+    text-align: center;
+}
+
+.goodsArea{
+    height: 100%;
+    width: 75vw;
+    overflow: scroll;
+}
+
+.sideTitle{
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 10rpx;
+    padding: 10rpx;
+}
+
+.sideTitleActive{
+    padding: 10rpx;
+    font-size: 14px;
+    color: rgb(226, 88, 25);
+    margin-bottom: 10rpx;
+    background-color: lightgray;
+}
+
+Page{
+    height: 100%;
+}
+
+.cate_icon{
+    width: 110rpx;
+}
