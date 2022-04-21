@@ -5,14 +5,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userInfo: {},
+    isLogin:false,
+    touchImage: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.showLoading({
+      title: '拼命加载中...',
+    })
+    if(wx.getStorageSync('userInfo')){
+      this.setData({
+        isLogin: true,
+        userInfo: wx.getStorageSync('userInfo')
+      })
+    };
+    wx.hideLoading({
+      success: (res) => {},
+    })
   },
 
   /**
@@ -62,5 +75,32 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getUserInfo(){
+      wx.getUserProfile({
+        desc: '登录',
+      }).then((res) => {
+        this.setData({
+          userInfo: res.userInfo,
+          isLogin: true
+        })
+      })
+  },
+  touchImage(){
+    this.setData({
+      touchImage: !this.data.touchImage
+    })
+  },
+  login(){
+    if(wx.getStorageSync('userInfo')){
+      this.setData({
+        isLogin: true,
+        userInfo: wx.getStorageSync('userInfo')
+      })
+    }
+    else{
+      this.getUserInfo();
+    }
+    
   }
 })

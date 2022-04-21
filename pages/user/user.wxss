@@ -1,1 +1,167 @@
 /* pages/user/user.wxss */
+.userBack {
+  --user_image_url: "{{userInfo.avatarUrl}}";
+  width: 100vw;
+  height: 100%;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  filter: blur(5px);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.userInfo_image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  position: absolute;
+  top: 50%;
+  left: 44.5%;
+  filter: drop-shadow(0 0 10px #00ffbf);
+}
+
+.userInfo_image_back {
+  transform: rotate(-360) scale(1);
+  transition: ease-out 0.5s;
+}
+
+.userInfo_image_hover {
+  transform: rotate(360deg) scale(1.3);
+  transition: all 1s;
+}
+
+.userName {
+  position: absolute;
+  top: 70%;
+  left: 49%;
+  margin-top: 10rpx;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  border-radius: 20rpx;
+  border: 1px solid #e9e9e9;
+  filter: drop-shadow(0 0 6px #ff028d);
+  /*滤镜投影，实现阴影效果*/
+  width: 95%;
+  height: 15%;
+  background-color: #f1f1f1;
+  margin: 70rpx 20rpx 20rpx 20rpx;
+  justify-content: center;
+}
+
+.menu_inner {
+  width: 90%;
+  height: 80%;
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.menu_item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.menu_item:last-child {
+  border: 0;
+}
+
+.item {
+  width: 150rpx;
+  height: 120rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  filter: drop-shadow(0 0 5px #a1a1a1);
+  background: #e9e9e9;
+}
+
+.item_hover {
+  transform: scale(0.95);
+  transition: all ease-in-out 0.75s;
+}
+
+.other {
+  width: 95%;
+  height: 35%;
+  border-radius: 20rpx;
+  filter: drop-shadow(0 0 5px #ff0095);
+  background: #f1f1f1;
+  margin: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 10rpx;
+}
+
+.other_item {
+  flex: 1;
+  width: 90%;
+  background-color: #e9e9e9;
+  border-radius: 20rpx;
+  margin: 10rpx;
+  filter: drop-shadow(0 0 5px #a1a1a1);
+  text-align: left;
+  padding: 20rpx;
+  font-size: 35rpx;
+  font-weight: bold;
+}
+
+.menu2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 20rpx;
+  border: 1px solid #e9e9e9;
+  filter: drop-shadow(0 0 6px #ff3b9d);
+  /*滤镜投影，实现阴影效果*/
+  width: 95%;
+  height: 100rpx;
+  background-color: #f1f1f1;
+  margin: 70rpx 20rpx 20rpx 20rpx;
+  justify-content: space-around;
+  position: absolute;
+  top: 75%;
+}
+
+.item2 {
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 5px #ff0000);
+  background: #e00c0c;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item2:first-child {
+  filter: drop-shadow(0 0 5px #ffe70e);
+  background: rgb(221, 218, 23);
+}
+
+.item2:last-child {
+  filter: drop-shadow(0 0 5px #0400ff);
+  background: rgb(17, 83, 226);
+}
+
+.feedback {
+  padding: 0;
+  margin: 0;
+  font-size: 35rpx;
+  font-weight: bold;
+  color: black;
+  height: 70rpx;
+  width: 100%;
+  border: 0;
+}
